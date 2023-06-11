@@ -1,0 +1,211 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*
+  2. Remove default margin
+*/
+* {
+    margin: 0;
+}
+
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+body {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background: url(img/got-bg-2.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+div.header {
+    background-color: #1F2937;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+div.header a {
+    color: white;
+    font-size: 1.5rem;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+}
+
+div.header img {
+    flex-shrink: 0;
+}
+
+div.section-1 {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 3rem;
+    justify-content: center;
+}
+
+div.section-1 div {
+    min-width: none;
+}
+
+div.section-1 img {
+    box-shadow: 0 0 1rem 1rem #1F2937dd;
+    border-radius: 1rem;
+    max-width: 400px;
+    min-width: none;
+    flex: 1 1 auto;
+}
+
+h1.main-text {
+    font-size: 3rem;
+    color: red;
+    text-shadow: 0px 0px 1rem orangered;
+    margin: 1rem;
+}
+
+p.description {
+    color: white;
+    margin: auto;
+    text-align: justify;
+    max-width: 425px;
+    min-width: none;
+}
+
+h2 {
+    flex-basis: 100%;
+    font-size: 2rem;
+    color: red;
+    text-shadow: 0px 0px 0.66rem orangered;
+    margin: 1rem;
+}
+
+div.section-2 {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+div.section-2 img {
+    border: 3px solid black;
+    border-radius: 1rem;
+    width: 100%;
+}
+
+div.section-2 figure {
+    background-color: #1F2937dd;
+    box-shadow: 0 0 1rem 1rem #1F2937dd;
+    border-radius: 1rem;
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+    width: 350px;
+}
+
+div.section-2 div {
+    width: 350px;
+}
+
+div.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #1F2937dd;
+    height: 100px;
+}
+
+div.footer h3 {
+    color: red;
+    text-shadow: 0 0 0.5rem orangered;
+}
+
+div.footer p {
+    text-align: center;
+    color: white;
+}
+
+hr {
+    border: 2px solid red;
+}
+
+button {
+    background-color: orangered;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    box-shadow: 0 0 5px red, 0 0 25px red;
+}
+
+button:hover {
+    box-shadow: 0 0 5px red,
+        0 0 25px red, 0 0 50px red,
+            0 0 100px red, 0 0 200px red;
+}
+
+@media (max-width: 470px) {
+    body {
+        width: 470px;
+        margin: 0 auto;
+    }
+}

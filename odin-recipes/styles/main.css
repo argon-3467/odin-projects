@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem;
+    border: 0 solid black;
+    background-color: #ddd;
+    box-shadow: 1px 1px 10px #c2c2c2, -1px -1px 10px #ddd;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin: -1rem -1rem 1rem;
+    background-color: #ccc;
+    box-shadow: 1px 1px 10px #c2c2c2, -7px -7px 14px #ddd;
+    position: sticky;
+    top: 0;
+
+    >a {
+        padding: 1rem 0;
+        flex: 1;
+    }
+
+    >a:hover,
+    a:active {
+        background-color: #e6e6e6;
+    }
+}
+
+div.flex-item:hover {
+    box-shadow: 7px 7px 14px #c2c2c2, -7px -7px 14px #ddd;
+}
+
+div.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2rem;
+}
+
+div.flex-item {
+    flex: 1 0 40%;
+    min-width: 350px;
+    padding: 2rem;
+    border-radius: 1rem;
+    background:#e6e6e6;
+
+
+    > a:hover > p::before {
+        content: "view recipe";
+        font-size: large;
+        color: red;
+        text-shadow: 0 0 0.5rem red;
+        display: block;
+        text-align: center;
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    >* {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+}
+
+p {
+    max-width: 700px;
+}
+
+p:hover {
+    color: black;
+    text-shadow: 0 0 0.5rem black;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.image-main {
+    max-width: 400px;
+}
+
+.image-recipe {
+    max-width: 300px;
+}
+
+@media (max-width: 650px) {
+    body {
+        width: 100%;
+    }
+}

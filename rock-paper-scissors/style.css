@@ -1,0 +1,50 @@
+body {
+  box-sizing: border-box;
+  background: fixed url(./img/brown-bg.jpg);
+  background-size: cover;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin: 0;
+}
+
+h1 {
+  font-size: 4rem;
+  text-shadow: 3px 3px black;
+  margin: 2rem;
+}
+
+.score {
+  text-shadow: 0px 0px black;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+div.choices {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+div.choices img {
+  border: 1px solid #963;
+  box-shadow: 0.5rem 0.5rem #963;
+  border-radius: 1rem;
+  flex: 1;
+  max-width: 300px;
+}
+
+div.choices img:active {
+  box-shadow: none;
+}
+
+.choices {
+  font-size: 5rem;
+  color: brown;
+}

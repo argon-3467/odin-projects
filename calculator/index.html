@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>calculator</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div class="calculator">
+        <div class="screen">
+          <div class="screen-primary"></div>
+          <div class="screen-secondary"></div>
+        </div>
+
+        <div class="all-keys">
+          <div class="left">
+            <div class="memory-keys">
+              <div class="key all-clear" data-value="clear">AC</div>
+              <div class="key delete" data-value="delete">
+                <i class="fa fa-delete-left" data-value="delete"></i>
+              </div>
+              <div class="key sign" data-value="sign">+/-</div>
+            </div>
+            <div class="num-keys">
+              <div>
+                <div class="key num-7" data-value="7">7</div>
+                <div class="key num-8" data-value="8">8</div>
+                <div class="key num-9" data-value="9">9</div>
+              </div>
+              <div>
+                <div class="key num-4" data-value="4">4</div>
+                <div class="key num-5" data-value="5">5</div>
+                <div class="key num-6" data-value="6">6</div>
+              </div>
+              <div>
+                <div class="key num-1" data-value="1">1</div>
+                <div class="key num-2" data-value="2">2</div>
+                <div class="key num-3" data-value="3">3</div>
+              </div>
+              <div>
+                <div class="key percent" data-value="percent">%</div>
+                <div class="key num-0" data-value="0">0</div>
+                <div class="key dot" data-value="dot">.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="op-keys">
+            <div class="key divide" data-value="divide">&div;</div>
+            <div class="key multiply" data-value="multiply">&times</div>
+            <div class="key subtract" data-value="subtract">-</div>
+            <div class="key add" data-value="add">+</div>
+            <div class="key equal" data-value="equal">=</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>
+        Copyright &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        argon-3467
+        <a href="https://github.com/argon-3467"
+          ><i class="fa-brands fa-github"></i
+        ></a>
+      </p>
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>

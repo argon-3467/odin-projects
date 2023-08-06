@@ -1,4 +1,7 @@
 // ÷ ×
+// "अरे करना क्या चाहते हो?"
+// "अधिकतम अंक सीमा 15 है"
+// "उत्तर 15 अंकों से बड़ा है"
 // Random no. between 56 and 255
 // lower limit is 56 to avoid dark colors
 function randomNumber() {
@@ -39,7 +42,6 @@ function numberLen(str) {
   while (i >= 0) {
     if (str.charAt(i) == ".");
     else if (str.charAt(i) == " ")
-      // do nothing
       break;
     i--;
     ans++;
@@ -47,8 +49,43 @@ function numberLen(str) {
   return ans;
 }
 
+//
+function keyBoardTOValue(key) {
+  if (key >= "0" && key <= "9") return key;
+  else if (key == "Delete" || key == "Backspace") return "delete";
+  else if (key == "/") return "divide";
+  else if (key == "*") return "multiply";
+  else if (key == "-") return "subtract";
+  else if (key == "+") return "add";
+  else if (key == "%") return "percent";
+  else if (key == ".") return "dot";
+  else if (key == "=" || key == "Enter") return "equal";
+  return null;
+}
+
+function doNothing() {
+  let str = screenPrimary.textContent;
+  screenPrimary.textContent = "अरे करना क्या चाहते हो ?";
+  let delayInMilliseconds = 1000; //1 second
+  setTimeout(function () {
+    screenPrimary.textContent = str;
+  }, delayInMilliseconds);
+}
+
+// don't allow scientific notation
+function BigAnswerError() {
+  let str = screenPrimary.textContent;
+  screenPrimary.textContent = "उत्तर 15 अंकों से बड़ा है";
+  let delayInMilliseconds = 1000; //1 second
+  setTimeout(function () {
+    screenPrimary.textContent = str;
+  }, delayInMilliseconds);
+}
+
+
+
 function updatePrimaryScreen(value) {
-  console.log(value);
+  // console.log(value);
 
   // clear the screen
   if (value == "clear") {
@@ -72,14 +109,13 @@ function updatePrimaryScreen(value) {
   }
 
   // add digit to the screen
-  else if (value.search(/[0-9]/) != -1) {
-    if (screenPrimary.textContent.slice(-1) == ")");
+  else if (value >= "0" && value <= "9") {
+    if (screenPrimary.textContent.slice(-1) == ")") doNothing();
     else if (numberLen(screenPrimary.textContent) < 15)
-      //do nothing
       screenPrimary.textContent += value;
     else {
       let str = screenPrimary.textContent;
-      screenPrimary.textContent = "Max digit limit is 15 ";
+      screenPrimary.textContent = "अधिकतम अंक सीमा 15 है";
       let delayInMilliseconds = 1000; //1 second
       setTimeout(function () {
         screenPrimary.textContent = str;
@@ -90,12 +126,11 @@ function updatePrimaryScreen(value) {
   // add dot to the screen
   else if (value == "dot") {
     // Add inital 0 if previous entity was a operator or empty string
-    if (screenPrimary.textContent.slice(-1) == ")");
+    if (screenPrimary.textContent.slice(-1) == ")") doNothing();
     else if (
       screenPrimary.textContent.slice(-1) == "" ||
       screenPrimary.textContent.slice(-1) == " "
     ) {
-      // do nothing
       screenPrimary.textContent += "0.";
     } else if (isInteger(screenPrimary.textContent)) {
       screenPrimary.textContent += ".";
@@ -107,7 +142,7 @@ function updatePrimaryScreen(value) {
     let str = screenPrimary.textContent;
     let i = str.length - 1;
     if (i == -1) {
-      //do nothing
+      doNothing();
     } else {
       let exist = 0; //number whose sign is being inverted
       while (i >= 0) {
@@ -119,7 +154,7 @@ function updatePrimaryScreen(value) {
         screenPrimary.textContent =
           str.slice(0, i + 1) + "(-" + str.slice(i + 1, str.length) + ")";
       else {
-        //do nothing
+        doNothing();
       }
     }
   }
@@ -141,20 +176,30 @@ function updatePrimaryScreen(value) {
     // if screen is empty allow only + or -
     if (screenPrimary.textContent.slice(-1) == "") {
       if (op == "+" || op == "-") screenPrimary.textContent += ` ${op} `;
-      // else do nothing (must have a left operand for other operators)
+      else {
+        doNothing();
+      }
     }
     // if previous entitity is a operator replace it with new operator
     else if (screenPrimary.textContent.slice(-1) == " ")
       screenPrimary.textContent = screenPrimary.textContent.replaceAt(-2, op);
     // otherwise add the operator itself
     else screenPrimary.textContent += ` ${op} `;
+  } else {
+    doNothing();
   }
 }
 
 function evaluate(expr) {
-  //TO DO: evaluate a (hopefully) valid expression
   if (screenPrimary.textContent == "") return "";
-  return "(Not implemented)";
+  if (expr.slice(-1) == " ") return "";
+  expr = expr.replaceAll("×", "*");
+  expr = expr.replaceAll("÷", "/");
+  console.log(expr);
+  if (eval(expr).toString().includes('e')) {
+    BigAnswerError();
+  }
+  return eval(expr);
 }
 
 let screenPrimary = document.querySelector(".screen-primary");
@@ -178,3 +223,14 @@ keys.forEach((key) =>
     screenSecondary.textContent = evaluate(screenPrimary.textContent);
   })
 );
+
+//
+document.addEventListener("keydown", (event) => {
+  // console.log(event.key);
+  // console.log(keyBoardTOValue(event.key));
+  let value = keyBoardTOValue(event.key);
+  if (value) {
+    updatePrimaryScreen(value);
+    screenSecondary.textContent = evaluate(screenPrimary.textContent);
+  }
+});

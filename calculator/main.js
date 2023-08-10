@@ -2,6 +2,7 @@
 // "अरे करना क्या चाहते हो?"
 // "अधिकतम अंक सीमा 15 है"
 // "उत्तर 15 अंकों से बड़ा है"
+// "शून्य से भाग नहीं किया जा सकता"
 // Random no. between 56 and 255
 // lower limit is 56 to avoid dark colors
 function randomNumber() {
@@ -41,8 +42,7 @@ function numberLen(str) {
     ans = 0;
   while (i >= 0) {
     if (str.charAt(i) == ".");
-    else if (str.charAt(i) == " ")
-      break;
+    else if (str.charAt(i) == " ") break;
     i--;
     ans++;
   }
@@ -81,8 +81,6 @@ function BigAnswerError() {
     screenPrimary.textContent = str;
   }, delayInMilliseconds);
 }
-
-
 
 function updatePrimaryScreen(value) {
   // console.log(value);
@@ -195,8 +193,16 @@ function evaluate(expr) {
   if (expr.slice(-1) == " ") return "";
   expr = expr.replaceAll("×", "*");
   expr = expr.replaceAll("÷", "/");
-  console.log(expr);
-  if (eval(expr).toString().includes('e')) {
+  let ans = eval(expr);
+  if (ans == Infinity || ans == -Infinity) {
+    let str = screenPrimary.textContent;
+    screenPrimary.textContent = "शून्य से भाग नहीं किया जा सकता";
+    let delayInMilliseconds = 1000; //1 second
+    setTimeout(function () {
+      screenPrimary.textContent = str;
+    }, delayInMilliseconds);
+  }
+  if (eval(expr).toString().includes("e")) {
     BigAnswerError();
   }
   return eval(expr);

@@ -1,6 +1,6 @@
 # Calculator
 
-Basic Airthmatic (Add, subtract, multiply, divide and remainder)
+Basic Airthmatic (Add, subtract, multiply, divide and remainder)  
 <img src="calc.png" alt="drawing" width="300"/>
 
 ## Calculate something [here](https://argon-3467.github.io/odin-projects/calculator/)

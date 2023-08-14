@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>sign-up-form</title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="side-image">
+        <div class="logo">
+          <img src="odin-lined.png" alt="odin-logo" />
+          <h1>ODIN</h1>
+        </div>
+        <p>
+          photo by
+          <a href="https://unsplash.com/@haliewestphoto">Haile West</a> on
+          <a href="https://unsplash.com/">Unsplash</a>
+        </p>
+      </div>
+      <div class="main-form">
+        <div class="msg">
+          <p>
+            This is not a real online service!. Sign up
+            now to get started. Use something fake
+          </p>
+          <p>You know you want to.</p>
+        </div>
+        <div class="input-section">
+          <form action="https://httpbin.org/post" method="post">
+            <p>* fields are required</p>
+            <label>
+              <input
+                type="text"
+                name="username"
+                placeholder="username*"
+                required
+                autofocus
+                pattern="^\w{5,12}$"
+              />
+              <p>
+                Username must contain 5 - 12 characters(A-Z, a-z, 0-9 or _ )
+              </p>
+            </label>
+            <label>
+              <input
+                type="text"
+                name="email"
+                placeholder="email*"
+                required
+                pattern="^[a-z\d\.-]+@[a-z\d-]+\.[a-z]{2,8}(\.[a-z]{2,8})?$"
+              />
+              <p>Email must be a valid address, e.g. me@mydomain.com</p>
+            </label>
+            <label>
+              <input
+                type="password"
+                name="password"
+                placeholder="password*"
+                required
+                pattern="^[\w@-]{8,20}$"
+              />
+              <p>
+                Password must alphanumeric (@, _ and - are also allowed) and be
+                8 - 20 characters
+              </p>
+              <input type="checkbox" name="showPassword" onclick="show()" />
+              Show Password
+            </label>
+            <label>
+              <input
+                type="text"
+                name="telephone"
+                class="valid"
+                placeholder="phone"
+                pattern="^$|^\d{10}$"
+              />
+              <p>
+                Empty or Number must be a valid India phone number (10 digits)
+              </p>
+            </label>
+            <label>
+              <input
+                type="text"
+                name="slug"
+                class="valid"
+                placeholder="profile slug"
+                pattern="^$|^[a-z\d-]{8,20}$"
+              />
+              <p>
+                Empty or must contain only lowercase letters, numbers and
+                hyphens and be 8 - 20 characters
+              </p>
+            </label>
+          </form>
+        </div>
+        <div class="submit-section">
+          <button form="my-form" type="submit">Create Account</button>
+          <p>Already have an account? <a href="#">Log in</a></p>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

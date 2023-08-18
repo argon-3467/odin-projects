@@ -1,0 +1,60 @@
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-text: #333333;
+  --sidebar-bg: #1992d4;
+  --sidebar-text: #ffffff;
+  --sidebar-text-hover: #ffd700;
+  font-family: "Roboto", sans-serif;
+}
+
+.sidebar svg {
+  width: 1rem;
+  height: 1rem;
+  fill: var(--sidebar-text);
+}
+
+.sidebar .logo svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.sidebar svg:hover {
+  fill: var(--sidebar-text-hover);
+}
+
+.sidebar {
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+}
+
+.header svg,
+.content svg {
+  width: 1rem;
+  height: 1rem;
+  fill: var(--main-text);
+}
+
+
+/* FOOTER */
+.footer {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.fa-github {
+  color: var(--primary-dark);
+  font-size: 24px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover {
+  transform: rotate(360deg) scale(1.2);
+}

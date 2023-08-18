@@ -3,16 +3,103 @@
 ::before {
   margin: 0;
   padding: 0;
-  cursor: pointer;
   box-sizing: border-box;
 }
 
 :root {
+  --content-bg: #eeeeee;
   --main-text: #333333;
   --sidebar-bg: #1992d4;
   --sidebar-text: #ffffff;
   --sidebar-text-hover: #ffd700;
   font-family: "Roboto", sans-serif;
+}
+
+li {
+  cursor: pointer;
+}
+
+img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* MAIN */
+
+.main {
+  display: grid;
+  grid-template: auto auto auto / 1fr 4fr;
+}
+
+.sidebar {
+  grid-row: 1 / 4;
+}
+
+.header {
+  padding: 0 2rem;
+  grid-column: 2 / 3;
+  display: grid;
+  gap: 0 1rem;
+  grid-template: 1fr 1fr / 1fr 1fr;
+  align-items: center;
+  > div {
+    display: flex;
+    gap: 1rem;
+  }
+
+}
+
+.header .search {
+  > input {
+    flex: 1;
+    border-radius: 1rem;
+    padding: 0 1rem;
+    background-color: var(--content-bg);
+    border: none; 
+    max-width: 300px;
+  }
+}
+
+.header .profile {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header .welcome-msg {
+  align-items: center;
+}
+
+.header .profile-buttons {
+  justify-content: flex-end;
+  > .button {
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    font-weight: bold;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+}
+
+.content {
+  padding: 1rem 2rem;
+  background-color: var(--content-bg);
+  grid-column: 2 / 3;
+  box-shadow: 0px 1px 4px black inset;
+  display: grid;
+  grid-template-columns: auto 300px;
+  grid-template-rows: auto auto;
+}
+
+.content .projects {
+  grid-row: 1 / -1;
+}
+
+svg {
+  cursor: pointer;
 }
 
 .sidebar svg {
@@ -37,8 +124,8 @@
 
 .header svg,
 .content svg {
-  width: 1rem;
-  height: 1rem;
+  width: 2rem;
+  height: 2rem;
   fill: var(--main-text);
 }
 
@@ -47,10 +134,14 @@
 .footer {
   padding: 10px;
   font-size: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .fa-github {
-  color: var(--primary-dark);
+  color: var(--main-text);
   font-size: 24px;
   transition: transform 0.3s ease-in-out;
 }

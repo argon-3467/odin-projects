@@ -11,4 +11,5 @@ This repository contains my projects while I learn web development
 
 ## Full Stack Javascript
 
-6. [sign-up-form](https://argon-3467.github.io/odin-projects/sign-up-form/)
+6. [sign-up-form](https://argon-3467.github.io/odin-projects/sign-up-form/)  
+7. [Admin-Dashboard](https://argon-3467.github.io/odin-projects/admin-dashboard)

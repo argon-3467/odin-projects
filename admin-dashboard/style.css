@@ -107,7 +107,7 @@ img {
   display: grid;
   gap: 1rem;
   grid-template-columns: auto 300px ;
-  > .announcements:hover,
+  .announcements:hover,
   .trending:hover,
   .project:hover {
     box-shadow: 0px 0px 4px 1px black;

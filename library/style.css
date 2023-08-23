@@ -121,8 +121,10 @@ button {
   align-items: center;
 }
 
-.card button {
-  align-self: stretch;
+.edit-delete {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .card button.read {
@@ -134,6 +136,7 @@ button {
 }
 .card .fa-trash {
   color: lightcoral;
+  font-size: 24px;
 }
 
 /*Footer*/

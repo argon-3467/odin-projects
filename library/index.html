@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="book-16.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Library</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <h1>Library</h1>
+      </div>
+      <div class="user">
+        <button>Sign Up</button>
+      </div>
+    </header>
+    <main class="main">
+      <div class="sidebar">
+        <div class="option">
+          <div class="detail">
+            <p>Books: 2</p>
+          </div>
+          <div class="detail">
+            <p>Read: 1</p>
+          </div>
+          <select name="filter" id="">
+            <option value="all" default>all</option>
+            <option value="read">read</option>
+            <option value="unread">unread</option>
+            <option value="date-old">date-oldest</option>
+            <option value="date-new">date-newest</option>
+          </select>
+          <button class="add">add</button>
+        </div>
+        <div class="change menu-bar" tabindex="0">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+      </div>
+
+      <div class="books">
+        <div class="card">
+          <p>book1</p>
+          <p>author1</p>
+          <p>250 pages</p>
+          <p>Added: 01-01-1997</p>
+          <button class="read">read</button>
+          <button style="font-size: 24px"><i class="fa fa-trash"></i></button>
+        </div>
+        <div class="card">
+          <p>book2</p>
+          <p>author2</p>
+          <p>300 pages</p>
+          <p>Added: 01-01-2001</p>
+          <button class="unread">unread</button>
+          <button style="font-size: 24px"><i class="fa fa-trash"></i></button>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>
+        Copyright &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        argon-3467
+        <a href="https://github.com/argon-3467"
+          ><i class="fa-brands fa-github"></i
+        ></a>
+      </p>
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>

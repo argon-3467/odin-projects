@@ -9,6 +9,9 @@
   --primary-color: #333;
   --primary-bg: #f0f0f0;
   --header-bg: #fff;
+  --blur-bg: #00000080;
+  --button-green: #90ee90;
+  --button-red: #f08080;
 }
 
 body {
@@ -41,7 +44,7 @@ button {
 /*Main*/
 .main {
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 2rem 5rem 2rem;
 }
 
 .sidebar {
@@ -124,19 +127,68 @@ button {
 .edit-delete {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .card button.read {
-  background-color: lightgreen;
+  background-color: var(--button-green);
 }
 
 .card button.unread {
-  background-color: lightcoral;
+  background-color: var(--button-red);
 }
 .card .fa-trash {
-  color: lightcoral;
+  color: var(--button-red);
   font-size: 24px;
+}
+
+/*Form*/
+form {
+  font-size: 1.25rem;
+  z-index: 2;
+  position: fixed;
+  left: calc(50vw - 150px);
+  top: calc(50vh - 200px);
+  width: 300px;
+  height: 400px;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--header-bg);
+  box-shadow: 0 0 4px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+input{
+  padding: 0.25rem;
+  font-size: 1.25rem;
+}
+.read-it {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+input[type="checkbox"] {
+  height: 1.25rem;
+  width: 1.25rem;
+  accent-color: lightgreen;
+}
+
+button.submit {
+  background-color: lightgreen;
+}
+
+.overlay {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--blur-bg);
 }
 
 /*Footer*/

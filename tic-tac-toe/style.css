@@ -83,6 +83,20 @@ select:focus {
   right: -0.5rem;
 }
 
+.cross,
+.nought{
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.score-1,
+.score-2 {
+  padding: 0 1rem;
+}
+
 svg {
   fill: var(--text-color);
 }

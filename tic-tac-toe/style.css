@@ -1,0 +1,147 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #333;
+    --text-color: #fff;
+    --border-color: #fff;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-color: #fff;
+    --text-color: #000;
+    --border-color: #000;
+  }
+}
+
+:root.dark {
+  --bg-color: #333;
+  --text-color: #fff;
+  --border-color: #fff;
+}
+
+:root.light {
+  --bg-color: #fff;
+  --text-color: #000;
+  --border-color: #000;
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+/*HEADER*/
+
+.header {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.difficulty {
+  grid-column: 1 / 4;
+}
+
+select {
+  width: 100%;
+  padding: 5px;
+}
+
+select:focus {
+  outline: none;
+}
+
+.score-board {
+  grid-column: 1 / -1;
+  display: flex;
+}
+
+.player-1,
+.player-2 {
+  padding: 8px;
+  font-size: 2rem;
+  font-family: monospace;
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+
+.player-1::after {
+  content: "";
+  width: 1rem;
+  border: 2px solid var(--text-color);
+  position: absolute;
+  z-index: 1;
+  top: calc(50% - 2px);
+  right: -0.5rem;
+}
+
+svg {
+  fill: var(--text-color);
+}
+
+/*GAME*/
+
+.game {
+  width: clamp(300px, 24%, 600px);
+  padding: 10px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.board {
+  width: 100%;
+  margin: 0 auto;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.box {
+  aspect-ratio: 1;
+  padding: 8px;
+  border-right: 2px solid var(--text-color);
+  border-bottom: 2px solid var(--text-color);
+}
+
+.box.no-right-border {
+  border-right: none;
+}
+.box.no-bottom-border {
+  border-bottom: none;
+}
+
+/* RESTART */
+.restart {
+  padding: 8px 20px;
+  font-size: 2rem;
+}
+
+/* FOOTER */
+.footer {
+  width: 100%;  
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-github {
+  color: var(--text-color);
+  font-size: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover {
+  transform: rotate(360deg) scale(1.2);
+}

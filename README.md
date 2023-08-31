@@ -13,3 +13,5 @@ This repository contains my projects while I learn web development
 
 6. [sign-up-form](https://argon-3467.github.io/odin-projects/sign-up-form/)  
 7. [Admin-Dashboard](https://argon-3467.github.io/odin-projects/admin-dashboard)
+8. [Library](https://argon-3467.github.io/odin-projects/library)
+9. [Tic-Tac-Toe](https://argon-3467.github.io/odin-projects/tic-tac-toe)

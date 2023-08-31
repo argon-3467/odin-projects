@@ -8,7 +8,14 @@ const board = (() => {
   let resetBoard = () => {
     for (let i = 0; i < 9; ++i) arr[i] = "";
   };
-  return { arr, resetBoard };
+  let full = () => {
+    for (let i = 0; i < 9; ++i) {
+      if (arr[i] == "") return false;
+    }
+    return true;
+  };
+
+  return { arr, resetBoard, full };
 })();
 
 let gameController = (() => {
@@ -27,16 +34,17 @@ let gameController = (() => {
     let temp = player1.mark;
     player1.mark = player2.mark;
     player2.mark = temp;
-    if(player1.mark == "cross")
-      turn.whom = player1;
-    else
-      turn.whom = player2;
+    if (player1.mark == "cross") turn.whom = player1;
+    else turn.whom = player2;
     showHTML.showPlayerMarks();
   };
 
   let restartRound = () => {
     board.resetBoard();
     showHTML.showBoard();
+    if (player1.mark == "cross") turn.whom = player1;
+    else turn.whom = player2;
+    showHTML.showTurn();
   };
 
   let restartGame = () => {
@@ -101,6 +109,12 @@ let gameController = (() => {
     }
     return false;
   };
+  let checkDraw = () => {
+    if (!checkWin()) {
+      if (board.full()) return true;
+    }
+    return false;
+  };
 
   let turnCheck = (boxId) => {
     if (board.arr[boxId] == "") {
@@ -110,8 +124,11 @@ let gameController = (() => {
         showHTML.showWinner();
         turn.whom.score++;
         showHTML.showScores();
+      } else if (checkDraw()) {
+        showHTML.showDraw();
       } else {
         swapTurn();
+        showHTML.showTurn();
       }
     }
   };
@@ -174,6 +191,27 @@ let showHTML = (() => {
     game.classList.add("blur");
     gameOver.toggleAttribute("hidden");
   };
+  let showDraw = () => {
+    let game = document.querySelector(".game");
+    let msg = document.querySelector(".msg");
+    let gameOver = document.querySelector(".game-over");
+    msg.innerHTML = `It's a Draw!`;
+    game.classList.add("blur");
+    gameOver.toggleAttribute("hidden");
+  };
+
+  let showTurn = () => {
+    let player1Name = document.querySelector('.player-1-name');
+    let player2Name = document.querySelector('.player-2-name');
+    if(gameController.turn.whom == gameController.player1){
+      player2Name.classList.remove('turn');
+      player1Name.classList.add('turn');
+    }
+    else if(gameController.turn.whom == gameController.player2){
+      player1Name.classList.remove('turn');
+      player2Name.classList.add('turn');
+    }
+  }
 
   return {
     showPlayerMarks,
@@ -181,6 +219,8 @@ let showHTML = (() => {
     showScores,
     showWinner,
     removeWinner,
+    showDraw,
+    showTurn,
   };
 })();
 
@@ -229,3 +269,5 @@ let displayController = (() => {
     showHTML.removeWinner();
   });
 })();
+
+showHTML.showTurn();

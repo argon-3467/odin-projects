@@ -1,0 +1,201 @@
+@font-face {
+  font-family: "marqueem";
+  src: url("./assets/marqueem.ttf");
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url("./assets/Oswald-SemiBold.ttf");
+}
+
+:root {
+  --logo-color: #ef227d;
+  --logo-border-color: white;
+  --selected-tab-color: white;
+  --unselected-tab-color: #bfbfbf;
+}
+
+body {
+  background-color: black;
+}
+
+#content {
+  width: clamp(min(425px, 100%), 90%, 900px);
+  margin: 0 auto;
+  color: white;
+  font-family: "marqueem";
+  box-shadow: 0px 0px 8px 0px var(--logo-color);
+}
+
+/* NAV BAR*/
+
+nav.nav ul {
+  display: flex;
+  justify-content: center;
+  background-color: #cd116b;
+}
+
+nav.nav ul li {
+  color: white;
+  padding: 10px 30px;
+  font-family: "Oswald";
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+nav.nav ul li.active {
+  background-color: #ef227d;
+}
+
+nav.nav ul li.toggle-nav-bar {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  nav.nav {
+    position: sticky;
+    top: 0;
+    min-height: 55px;
+  }
+
+  nav.nav ul {
+    position: absolute;
+    height: 100vh;
+    background-color: unset;
+    justify-content: flex-start;
+  }
+
+  nav.nav ul.show {
+    background-color: #cd116b;
+    flex-direction: column;
+  }
+
+  nav.nav ul li.toggle-nav-bar {
+    display: unset;
+  }
+
+  nav.nav ul li {
+    display: none;
+  }
+
+  nav.nav ul.show li {
+    display: unset;
+  }
+}
+
+/* HOME */
+
+#content.home .logo {
+  color: white;
+  width: 70%;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+#content.home .neonText {
+  font-family: "Oswald";
+  font-size: 5rem;
+  text-shadow: 0 0 7px var(--logo-color), 0 0 10px var(--logo-color),
+    0 0 21px var(--logo-color), 0 0 42px var(--logo-color),
+    0 0 82px var(--logo-color), 0 0 92px var(--logo-color),
+    0 0 102px var(--logo-color), 0 0 151px var(--logo-color);
+}
+
+#content.home .logo h1 {
+  /* font-size: 4rem; */
+  animation: pulsateText 0.5s infinite alternate, pulsateBoxShadow 0.5s infinite;
+  border: 0.2rem solid #fff;
+  border-radius: 10px;
+  padding: 0.4em;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem var(--logo-color),
+    0 0 0.8rem var(--logo-color), 0 0 2.8rem var(--logo-color),
+    inset 0 0 1.3rem var(--logo-color);
+}
+
+@keyframes pulsateText {
+  100% {
+    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff,
+      0 0 20px var(--logo-color), 0 0 40px var(--logo-color),
+      0 0 40px var(--logo-color), 0 0 100px var(--logo-color),
+      0 0 110px var(--logo-color);
+  }
+
+  0% {
+    text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff,
+      0 0 10px var(--logo-color), 0 0 45px var(--logo-color),
+      0 0 45px var(--logo-color), 0 0 70px var(--logo-color),
+      0 0 80px var(--logo-color);
+  }
+}
+
+@keyframes pulsateBoxShadow {
+  100% {
+    box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem var(--logo-color),
+      0 0 0.8rem var(--logo-color), 0 0 2.8rem var(--logo-color),
+      inset 0 0 1.3rem var(--logo-color);
+  }
+
+  0% {
+    box-shadow: 0 0 0.3rem #fff, 0 0 0.3rem #fff, 0 0 3rem var(--logo-color),
+      0 0 0.9rem var(--logo-color), 0 0 2.2rem var(--logo-color),
+      inset 0 0 1.3rem var(--logo-color);
+  }
+}
+
+#content.home h3 {
+  font-size: 36px;
+  text-align: center;
+  /* outline: 1px solid yellow; */
+}
+
+#content.home h3 > a {
+  text-decoration: none;
+  color: var(--logo-color);
+  cursor: pointer;
+}
+
+#content.home > h3 > a:hover {
+  --logo-color: white;
+}
+
+#content.home .card-container {
+  width: 100%;
+  /* height: 100px; */
+  display: flex;
+  /* outline:1px solid whitesmoke; */
+}
+
+#content.home .card {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#content.home .card-image {
+  height: 60%;
+  /* outline: 1px solid red; */
+}
+
+#content.home .card-image > img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+}
+
+#content.home .card-title {
+  text-align: center;
+  font-size: 27px;
+  letter-spacing: 2px;
+}
+
+#content.home .card-title:hover {
+  color: var(--logo-color);
+}
+
+@media screen and (max-width: 425px) {
+  #content.home .card-container {
+    flex-direction: column;
+  }
+}

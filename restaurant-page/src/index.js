@@ -7,13 +7,16 @@ import hamBurgerSvg from "./assets/menu.svg";
 
 import { createHtmlElement, createImgElement } from "./helper";
 import { HomePageFactory } from "./home";
+import { MenuPageFactory } from "./menu";
 
 const load = (() => {
   const content = document.querySelector("#content");
   const homePage = HomePageFactory(content);
+  const menuPage = MenuPageFactory(content);
 
   const TabNames = ["HOME", "MENU", "GALLERY", "CONTACT", "BOOK"];
-  const currentTab = "HOME";
+  // let currentTab = "HOME";
+  let currentTab = "MENU";
 
   function addNavBar() {
     const unorderedList = document.createElement("ul");
@@ -46,9 +49,34 @@ const load = (() => {
     unorderedList.classList.toggle("show");
   }
 
-  function switchTab() {
-    // To do
-    console.log("inside switch tab");
+  function switchTab(e) {
+    const newTab = e.target.textContent;
+    if (newTab == currentTab) return;
+
+    //remove current tab
+    if (currentTab == "HOME") homePage.remove();
+    else if (currentTab == "MENU") menuPage.remove();
+    else if (currentTab == "GALLERY");
+    else if (currentTab == "CONTACT");
+    else if (currentTab == "BOOK");
+
+    //change color in nav bar
+    colorNavBar(newTab);
+
+    //load new tab
+    if (newTab == "HOME") {
+      homePage.display();
+    } else if (newTab == "MENU") {
+      menuPage.display();
+    } else if (newTab == "GALLERY") {
+      // galleryPage.display();
+    } else if (newTab == "CONTACT") {
+      // galleryPage.display();
+    } else if (newTab == "BOOK") {
+      // galleryPage.display();
+    }
+
+    currentTab = newTab;
   }
 
   function colorNavBar(tab) {
@@ -67,8 +95,10 @@ const load = (() => {
   }
 
   addNavBar();
-  colorNavBar("HOME");
-  homePage.display();
+  // colorNavBar("HOME");
+  colorNavBar("MENU");
+  // homePage.display();
+  menuPage.display();
 
   const footer = createHtmlElement("footer", null, ["footer"], null, null);
   footer.innerHTML = `<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>argon-3467<a href="https://github.com/argon-3467"><i class="fa-brands fa-github"></i></a></p>`;

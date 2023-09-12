@@ -25,6 +25,8 @@ body {
   color: white;
   font-family: "marqueem";
   box-shadow: 0px 0px 8px 0px var(--logo-color);
+  min-height: 100vh;
+  position: relative;
 }
 
 /* NAV BAR*/
@@ -45,7 +47,7 @@ nav.nav ul li {
 }
 
 nav.nav ul li.active {
-  background-color: #ef227d;
+  background-color: var(--logo-color);
 }
 
 nav.nav ul li.toggle-nav-bar {
@@ -198,4 +200,42 @@ nav.nav ul li.toggle-nav-bar {
   #content.home .card-container {
     flex-direction: column;
   }
+}
+
+/* MENU */
+
+.menu-container {
+  padding: 2rem 2rem 5rem;
+}
+
+.menu-title {
+  text-align: center;
+  color: var(--logo-color);
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+.menu-sub-container {
+  font-size: 1.5rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.menu-ingredients {
+  padding: 0.5rem;
+  width: max(60%, 300px);
+}
+
+.menu-line {
+  height: 0;
+  width: clamp(20px, 10%, 100px);
+  border-top: 4px dotted white;
+  margin: 0 auto;
+}
+
+.menu-cost {
+  width: 20%;
+  padding: 0.5rem;
 }

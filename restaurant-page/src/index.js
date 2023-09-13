@@ -8,15 +8,18 @@ import hamBurgerSvg from "./assets/menu.svg";
 import { createHtmlElement, createImgElement } from "./helper";
 import { HomePageFactory } from "./home";
 import { MenuPageFactory } from "./menu";
+import { GalleryPageFactory } from "./gallery";
 
 const load = (() => {
   const content = document.querySelector("#content");
   const homePage = HomePageFactory(content);
   const menuPage = MenuPageFactory(content);
+  const galleryPage = GalleryPageFactory(content);
 
   const TabNames = ["HOME", "MENU", "GALLERY", "CONTACT", "BOOK"];
-  // let currentTab = "HOME";
-  let currentTab = "MENU";
+  let currentTab = "HOME";
+  // let currentTab = "MENU";
+  // let currentTab = "GALLERY";
 
   function addNavBar() {
     const unorderedList = document.createElement("ul");
@@ -56,7 +59,7 @@ const load = (() => {
     //remove current tab
     if (currentTab == "HOME") homePage.remove();
     else if (currentTab == "MENU") menuPage.remove();
-    else if (currentTab == "GALLERY");
+    else if (currentTab == "GALLERY") galleryPage.remove();
     else if (currentTab == "CONTACT");
     else if (currentTab == "BOOK");
 
@@ -69,7 +72,7 @@ const load = (() => {
     } else if (newTab == "MENU") {
       menuPage.display();
     } else if (newTab == "GALLERY") {
-      // galleryPage.display();
+      galleryPage.display();
     } else if (newTab == "CONTACT") {
       // galleryPage.display();
     } else if (newTab == "BOOK") {
@@ -95,10 +98,12 @@ const load = (() => {
   }
 
   addNavBar();
-  // colorNavBar("HOME");
-  colorNavBar("MENU");
-  // homePage.display();
-  menuPage.display();
+  colorNavBar("HOME");
+  // colorNavBar("MENU");
+  // colorNavBar("GALLERY");
+  homePage.display();
+  // menuPage.display();
+  // galleryPage.display();
 
   const footer = createHtmlElement("footer", null, ["footer"], null, null);
   footer.innerHTML = `<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>argon-3467<a href="https://github.com/argon-3467"><i class="fa-brands fa-github"></i></a></p>`;

@@ -1,19 +1,21 @@
 @import "./variables.css";
 /* FOOTER */
 .footer {
+  position: fixed;
+  bottom: 0;
   width: 100%;
   padding: 10px;
   font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--header-text-color);
   background-color: var(--theme-color);
   font-family: var(--font-system);
 }
 
 .footer .fa-github {
-  color: white;
+  color: var(--header-text-color);
   font-size: 24px;
   transition: transform 0.3s ease-in-out;
 }

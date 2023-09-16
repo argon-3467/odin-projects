@@ -1,11 +1,62 @@
 :root {
-  --text-color: #ffffff;
-  --white-filter: invert(100%) sepia(88%) saturate(0%) hue-rotate(104deg)
-    brightness(105%) contrast(101%);
-  --black-filter: invert(0%) sepia(98%) saturate(25%) hue-rotate(4deg)
-    brightness(91%) contrast(100%);
-  --theme-color: #dc4c3e;
-  --theme-color-hover: #b03d32;
   --font-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+:root.dark {
+  --header-text-color: #ffffff;
+  --main-text-color: #ffffff;
+  --bg-color: #1e1e1e;
+  --theme-color: #333333;
+  --theme-color-hover: #414141;
+  /* white svg */
+  --filter: invert(100%) sepia(88%) saturate(0%) hue-rotate(104deg)
+    brightness(105%) contrast(101%);
+}
+
+:root.light {
+  --header-text-color: #000000;
+  --main-text-color: #000000;
+  --bg-color: #ffffff;
+  --theme-color: #eeeeee;
+  --theme-color-hover: #dddddd;
+  /*Black svg*/
+  --filter: invert(0%) sepia(98%) saturate(25%) hue-rotate(4deg) brightness(91%)
+    contrast(100%);
+}
+
+:root.red {
+  --header-text-color: #ffffff;
+  --main-text-color: #000000;
+  --bg-color: #ff8f8f;
+  --theme-color: #dc4c3e;
+  --theme-color-hover: #b03d32;
+  /* white svg */
+  --filter: invert(100%) sepia(88%) saturate(0%) hue-rotate(104deg)
+    brightness(105%) contrast(101%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root.system {
+    --header-text-color: #ffffff;
+    --main-text-color: #ffffff;
+    --bg-color: #1e1e1e;
+    --theme-color: #333333;
+    --theme-color-hover: #414141;
+    /* white svg */
+    --filter: invert(100%) sepia(88%) saturate(0%) hue-rotate(104deg)
+      brightness(105%) contrast(101%);
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root.system {
+    --header-text-color: #000000;
+    --main-text-color: #000000;
+    --bg-color: #ffffff;
+    --theme-color: #eeeeee;
+    --theme-color-hover: #dddddd;
+    /*Black svg*/
+    --filter: invert(0%) sepia(98%) saturate(25%) hue-rotate(4deg)
+      brightness(91%) contrast(100%);
+  }
 }

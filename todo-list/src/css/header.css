@@ -1,0 +1,64 @@
+@import "./variables.css";
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var(--theme-color);
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+[class^="nav-"] {
+  display: flex;
+  gap: 8px;
+}
+.header .svgContainer {
+  height: 30px;
+  width: 30px;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--theme-color-hover);
+  }
+}
+
+.header img {
+  filter: var(--filter);
+}
+
+/*Theme card*/
+
+.select-theme {
+  color: var(--header-text-color);
+  padding: 1rem;
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  border-radius: 8px;
+  width: max-content;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s;
+  background-color: var(--theme-color);
+  &[data-open] {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.select-theme h2 {
+  font-size: 1.5rem;
+  margin: 0rem auto;
+}
+
+.select-theme label {
+  display: block;
+  padding: 8px;
+  &:hover,
+  &.active {
+    background-color: var(--theme-color-hover);
+  }
+}

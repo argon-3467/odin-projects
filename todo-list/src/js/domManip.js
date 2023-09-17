@@ -1,5 +1,6 @@
 import themeFactory from "./theme";
 import mainPageFactory from "./main";
+import formPageFactory from "./form";
 
 export default function domManip() {
   let themeUpdater = themeFactory();
@@ -18,8 +19,10 @@ export default function domManip() {
 
     let add = document.querySelector(".svg-add").parentElement;
     add.addEventListener("click", () => {
-      // Will show form on main page to get a task to be added
-      alert("This feature is not yet Implemented");
+      let page = document.querySelector("#page");
+      let Form = formPageFactory(page);
+      Form.remove();
+      Form.displayToDo();
     });
 
     let calendar = document.querySelector(".svg-calendar-header").parentElement;
@@ -55,8 +58,11 @@ export default function domManip() {
     });
     let projectHeader = document.querySelector(".projects-header");
     projectHeader.addEventListener("click", () => {
-      // Add a project
-      alert("This feature is not yet Implemented");
+      let page = document.querySelector("#page");
+      let Form = formPageFactory(page);
+      Form.remove();
+      Form.displayProject();
+      mainSection.toggleSideMenu();
     });
     let botDiv = document.querySelector(".bot-div");
     let Projects = [...botDiv.querySelectorAll(`[class^="box-"]`)];

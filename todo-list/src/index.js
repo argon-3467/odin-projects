@@ -2,7 +2,9 @@ import "./css/reset.css";
 import "./css/variables.css";
 import "./css/header.css";
 import "./css/main.css";
+import "./css/form.css";
 import "./css/footer.css";
+
 import { createHtmlElement, createImgElement } from "./js/helper";
 import themeFactory from "./js/theme";
 import headerFactory from "./js/header";
@@ -27,5 +29,6 @@ const load = (() => {
   themeUpdater.addThemesCard();
   footerSection.display();
   themeUpdater.updateTheme("system");
+
   domManipulator.addListners();
 })();

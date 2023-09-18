@@ -1,6 +1,44 @@
 import { createHtmlElement } from "./helper";
+import storageFactory from "./storage";
+import todayFactory from "./today";
+import mainPageFactory from "./main";
 
 export default function formPageFactory(page) {
+  let Storage = storageFactory();
+  let Today = todayFactory(page);
+  let Main = mainPageFactory();
+  function getFormValues(typeOfForm) {
+    if (typeOfForm == "todo") {
+      let title = document.getElementById("title").value;
+      let project = document.getElementById("project").value;
+      let details = document.getElementById("details").value;
+      let dueDate = new Date(
+        document.getElementById("dueDate").value
+      ).toDateString();
+      let priority = document.getElementById("priority").value;
+      return {
+        title,
+        project,
+        details,
+        dueDate,
+        priority,
+      };
+    } else if (typeOfForm == "project") {
+      let project = document.getElementById("project").value;
+      return {
+        project,
+      };
+    }
+  }
+
+  function ValidateData(data, typeOfForm) {
+    if (typeOfForm == "todo") return "yes";
+    else if (typeOfForm == "project") {
+      if (Storage.hasProject(data.project)) return "project";
+      else return "yes";
+    }
+  }
+
   function addBtnListners(btnsDiv) {
     btnsDiv.childNodes.forEach((childBtn) => {
       if (childBtn.id == "cancel") {
@@ -11,20 +49,62 @@ export default function formPageFactory(page) {
       } else if (childBtn.id == "submit") {
         childBtn.addEventListener("click", (event) => {
           event.preventDefault();
-          // Verify the data and add to the local storage
-          console.log("Page should not refresh!");
+          let data = getFormValues(childBtn.className);
+          let errorValue = ValidateData(data, childBtn.className);
+          if (errorValue == "yes" && childBtn.className == "todo") {
+            Storage.addTask(
+              data.title,
+              data.project,
+              data.details,
+              data.dueDate,
+              data.priority,
+              false
+            );
+            Today.remove();
+            Today.display();
+          } else if (errorValue == "yes" && childBtn.className == "project") {
+            Storage.addProject(data.project);
+            Main.updateProjects();
+            Today.remove();
+            Today.display();
+          } else {
+            showAlert(errorValue);
+          }
         });
       }
     });
   }
 
-  function createFormBtns() {
-    let cancelBtn = createHtmlElement("button", "cancel", null, "Cancel", null);
+  function showAlert(errorValue) {
+    alert(`${errorValue} is invalid.`);
+  }
+
+  function createFormBtns(typeOfForm) {
+    let cancelBtn = createHtmlElement(
+      "button",
+      "cancel",
+      [typeOfForm],
+      "Cancel",
+      null
+    );
     cancelBtn.setAttribute("type", "button");
-    let clearBtn = createHtmlElement("button", "clear", null, "Clear", null);
+    let clearBtn = createHtmlElement(
+      "button",
+      "clear",
+      [typeOfForm],
+      "Clear",
+      null
+    );
     clearBtn.setAttribute("type", "reset");
-    let submitBtn = createHtmlElement("button", "submit", null, "Submit", null);
+    let submitBtn = createHtmlElement(
+      "button",
+      "submit",
+      [typeOfForm],
+      "Add",
+      null
+    );
     submitBtn.setAttribute("type", "submit");
+
     return createHtmlElement("div", null, ["btns"], null, [
       cancelBtn,
       clearBtn,
@@ -56,7 +136,7 @@ export default function formPageFactory(page) {
     page.appendChild(
       createHtmlElement("h2", null, ["form-header"], "Add a new todo", null)
     );
-    let btns = createFormBtns();
+    let btns = createFormBtns("todo");
     addBtnListners(btns);
     let form = createHtmlElement("form", null, null, null, [
       createFormElement("input", "title", "text", true, "Title:", null),
@@ -77,7 +157,7 @@ export default function formPageFactory(page) {
     page.appendChild(
       createHtmlElement("h2", null, ["form-header"], "Add a new Project", null)
     );
-    let btns = createFormBtns();
+    let btns = createFormBtns("project");
     addBtnListners(btns);
     let form = createHtmlElement("form", null, null, null, [
       createFormElement("input", "project", "text", true, "Project:", null),
@@ -97,8 +177,7 @@ export default function formPageFactory(page) {
 
   function remove() {
     page.innerHTML = "";
-    page.classList.remove("form-todo");
-    page.classList.remove("form-project");
+    page.className = "";
   }
   return {
     displayToDo,

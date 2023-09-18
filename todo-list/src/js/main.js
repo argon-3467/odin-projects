@@ -2,11 +2,12 @@ import { createHtmlElement, createImgElement } from "./helper";
 
 import todaySrc from "./../assets/img/today.svg";
 import upcomingSrc from "./../assets/img/upcoming.svg";
-import houseSrc from "./../assets/img/house.svg";
-import workSrc from "./../assets/img/work.svg";
+import deleteSrc from "./../assets/img/delete.svg";
 import addSrc from "./../assets/img/add.svg";
+import storageFactory from "./storage";
 
 export default function mainPageFactory(main) {
+  let Storage = storageFactory();
   function getSvgWithContainer(src, alt, Classes) {
     const svgCard = createImgElement(src, alt, Classes, null);
     const svgContainer = createHtmlElement(
@@ -18,14 +19,12 @@ export default function mainPageFactory(main) {
     );
     return svgContainer;
   }
-
+  function createDivBox(svg, text, classList) {
+    let para = createHtmlElement("p", null, null, text, null);
+    let div = createHtmlElement("div", null, classList, null, [svg, para]);
+    return div;
+  }
   function createSideMenu() {
-    function createDivBox(svg, text, classList) {
-      let para = createHtmlElement("p", null, null, text, null);
-      let div = createHtmlElement("div", null, classList, null, [svg, para]);
-      return div;
-    }
-
     let topDiv = createHtmlElement("div", null, ["top-div"], null, [
       createDivBox(
         getSvgWithContainer(todaySrc, "today icon", ["svg-today"]),
@@ -50,18 +49,20 @@ export default function mainPageFactory(main) {
       header,
       getSvgWithContainer(addSrc, "Add project", ["svg-add-project"]),
     ]);
-    let botDiv = createHtmlElement("div", null, ["bot-div"], null, [
-      createDivBox(
-        getSvgWithContainer(houseSrc, "House icon", ["svg-house"]),
-        "Home",
-        ["box-house"]
-      ),
-      createDivBox(
-        getSvgWithContainer(workSrc, "work icon", ["svg-work"]),
-        "Work",
-        ["box-work"]
-      ),
-    ]);
+    let ProjectList = Storage.getProjectList();
+
+    let botDiv = createHtmlElement("div", null, ["bot-div"], null, null);
+
+    ProjectList.forEach((project) => {
+      botDiv.appendChild(
+        createDivBox(
+          getSvgWithContainer(deleteSrc, "Delete icon", ["svg-delete"]),
+          `${project}`,
+          [`box-`]
+        )
+      );
+    });
+
     let sideMenu = createHtmlElement("div", null, ["sideMenu"], null, [
       topDiv,
       headerDiv,
@@ -80,7 +81,13 @@ export default function mainPageFactory(main) {
     document.querySelector(".sideMenu").toggleAttribute("data-open");
   }
 
-  function ShowHome() {}
+  function updateProjects() {
+    let ProjectList = Storage.getProjectList();
+    let botDiv = document.querySelector(".bot-div");
+    let name = ProjectList[ProjectList.length - 1];
+    let svg = getSvgWithContainer(deleteSrc, "Delete icon", ["svg-delete"]);
+    botDiv.appendChild(createDivBox(svg, name, [`box-`]));
+  }
 
   function ShowUpcoming() {}
 
@@ -90,7 +97,7 @@ export default function mainPageFactory(main) {
     createSideMenu,
     toggleSideMenu,
     createPage,
-    ShowHome,
+    updateProjects,
     ShowUpcoming,
     ShowProject,
   };

@@ -13,8 +13,11 @@ import mainPageFactory from "./js/main";
 import footerFactory from "./js/footer";
 import domManip from "./js/domManip";
 import todayFactory from "./js/today";
+import storageFactory from "./js/storage";
 
 const load = (() => {
+  let Storage = storageFactory();
+  Storage.init();
   const header = document.querySelector(".header");
   const main = document.querySelector(".main");
   const footer = document.querySelector(".footer");

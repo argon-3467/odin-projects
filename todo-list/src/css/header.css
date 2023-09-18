@@ -8,9 +8,10 @@
   padding: 8px 16px;
   display: flex;
   justify-content: space-between;
+  z-index: 1;
 }
 
-[class^="nav-"] {
+.header [class^="nav-"] {
   display: flex;
   gap: 8px;
 }
@@ -25,13 +26,13 @@
   }
 }
 
-.header .svgContainer {
+.header img {
   filter: var(--filter);
 }
 
 /*Theme card*/
 
-.select-theme {
+.header .select-theme {
   color: var(--header-text-color);
   padding: 1rem;
   position: absolute;
@@ -49,12 +50,12 @@
   }
 }
 
-.select-theme h2 {
+.header .select-theme h2 {
   font-size: 1.5rem;
   margin: 0rem auto;
 }
 
-.select-theme label {
+.header .select-theme label {
   display: block;
   padding: 8px;
   &:hover {

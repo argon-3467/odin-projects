@@ -1,31 +1,11 @@
-import { Task } from "./Task";
+import storageFactory from "./storage";
 import { createHtmlElement, createImgElement } from "./helper";
 
 import editSrc from "./../assets/img/edit.svg";
 import deleteSrc from "./../assets/img/delete.svg";
 
 export default function todayFactory(page) {
-  let TaskList = [
-    new Task("a", "home", "this is a test project", "18-09-2023", "low", false),
-    new Task(
-      "b",
-      "home",
-      "this is a test project",
-      "18-09-2023",
-      "medium",
-      false
-    ),
-    new Task("c", "home", "this is a test project", "18-09-2023", "high", true),
-    new Task("d", "home", "this is a test project", "19-09-2023", "low", true),
-    new Task(
-      "e",
-      "home",
-      "this is a test project",
-      "27-09-2023",
-      "high",
-      false
-    ),
-  ];
+  let Storage = storageFactory();
 
   function getSvgWithContainer(src, alt, Classes) {
     const svgCard = createImgElement(src, alt, Classes, null);
@@ -40,14 +20,14 @@ export default function todayFactory(page) {
   }
 
   function createTaskDiv(task) {
-    let titleH2 = createHtmlElement(
-      "h2",
+    let titleSpan = createHtmlElement("span", null, null, task.title, null);
+    let dateEle = createHtmlElement(
+      "p",
       null,
-      ["task-header"],
-      task.title,
+      ["task-date"],
+      `${new Date(task.dueDate).toDateString()}`,
       null
     );
-    let dateEle = createHtmlElement("p", null, ["task-date"], "today", null);
     let priorityDiv = createHtmlElement(
       "div",
       null,
@@ -63,12 +43,28 @@ export default function todayFactory(page) {
       null,
       [priorityDiv]
     );
+    prioritySvg.addEventListener("click", () => {
+      let task = prioritySvg.parentElement.parentElement;
+      task.classList.toggle("done");
+      let updatedTask = Storage.getTaskById(task.id);
+      updatedTask.done = !updatedTask.done;
+      Storage.updateTaskById(updatedTask);
+    });
     let editSvg = getSvgWithContainer(editSrc, "edit icon", ["svg-edit"]);
+    editSvg.addEventListener("click", () => {
+      // Edit the task
+      alert("This feature is not yet implemented.");
+    });
     let deleteSvg = getSvgWithContainer(deleteSrc, "delete icon", [
       "svg-delete",
     ]);
+    deleteSvg.addEventListener("click", () => {
+      let task = prioritySvg.parentElement.parentElement;
+      Storage.deleteTaskById(task.id);
+      task.remove();
+    });
     let leftDiv = createHtmlElement("div", null, ["task-left"], null, [
-      titleH2,
+      createHtmlElement("div", null, ["task-header"], null, [titleSpan]),
       dateEle,
     ]);
     let rightDiv = createHtmlElement("div", null, ["task-right"], null, [
@@ -76,7 +72,7 @@ export default function todayFactory(page) {
       editSvg,
       deleteSvg,
     ]);
-    let taskDiv = createHtmlElement("div", null, ["task"], null, [
+    let taskDiv = createHtmlElement("div", task.id, ["task"], null, [
       leftDiv,
       rightDiv,
     ]);
@@ -85,10 +81,10 @@ export default function todayFactory(page) {
   }
 
   function addToday() {
+    let todaysDate = new Date().toDateString();
+    let TaskList = Storage.getTaskListByDate(todaysDate);
     TaskList.forEach((task) => {
-      if (task.dueDate == "18-09-2023") {
-        page.appendChild(createTaskDiv(task));
-      }
+      page.appendChild(createTaskDiv(task));
     });
   }
 
@@ -99,7 +95,7 @@ export default function todayFactory(page) {
 
   function remove() {
     page.innerHTML = "";
-    page.classList.remove("today");
+    page.className = "";
   }
 
   return {

@@ -1,6 +1,7 @@
 import themeFactory from "./theme";
 import mainPageFactory from "./main";
 import formPageFactory from "./form";
+import todayFactory from "./today";
 
 export default function domManip() {
   let themeUpdater = themeFactory();
@@ -13,8 +14,10 @@ export default function domManip() {
     });
     let home = document.querySelector(".svg-home").parentElement;
     home.addEventListener("click", () => {
-      //  Will show Today's tasks on the main page
-      alert("This feature is not yet Implemented");
+      let page = document.querySelector("#page");
+      let Today = todayFactory(page);
+      Today.remove();
+      Today.display();
     });
 
     let add = document.querySelector(".svg-add").parentElement;
@@ -47,8 +50,11 @@ export default function domManip() {
   function addSideMenuListners() {
     let todayBox = document.querySelector(".box-today");
     todayBox.addEventListener("click", () => {
-      // Will show Today's task on the main page
-      alert("This feature is not yet Implemented");
+      let page = document.querySelector("#page");
+      let Today = todayFactory(page);
+      Today.remove();
+      Today.display();
+      mainSection.toggleSideMenu();
     });
 
     let upcomingBox = document.querySelector(".box-upcoming");

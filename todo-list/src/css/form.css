@@ -1,0 +1,77 @@
+@import "./variables.css";
+
+[class^="form-"] {
+  padding: 2rem;
+  color: var(--main-text-color);
+  display: flex;
+  flex-direction: column;
+}
+
+[class^="form-"] .form-header {
+  font-size: 2rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+[class^="form-"] form {
+  overflow: hidden;
+  min-width: 250px;
+  max-width: 400px;
+  width: 100%;
+  align-self: center;
+  flex: 1;
+  font-family: monospace;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+[class^="form-"] form div {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+[class^="form-"] div.btns {
+  flex-direction: row;
+  justify-content: center;
+  align-self: flex-end;
+}
+
+[class^="form-"] div.btns button {
+  flex: 0;
+}
+
+[class^="form-"] label {
+  width: 100px;
+}
+
+[class^="form-"] input,
+[class^="form-"] textarea,
+[class^="form-"] select,
+[class^="form-"] div.btns button {
+  flex: 1;
+  padding: 0.5rem;
+  background-color: var(--theme-color);
+  border-radius: 4px;
+  &:hover {
+    background-color: var(--theme-color-hover);
+  }
+}
+
+[class^="form-"] textarea {
+  resize: vertical;
+  max-height: 200px;
+}
+
+@media (max-width: 500px) {
+  [class^="form-"] form div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  [class^="form-"] input,
+  [class^="form-"] textarea,
+  [class^="form-"] select {
+    width: 100%;
+  }
+}

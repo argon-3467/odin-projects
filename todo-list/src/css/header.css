@@ -25,7 +25,7 @@
   }
 }
 
-.header img {
+.header .svgContainer {
   filter: var(--filter);
 }
 
@@ -57,7 +57,9 @@
 .select-theme label {
   display: block;
   padding: 8px;
-  &:hover,
+  &:hover {
+    background-color: var(--theme-color-hover);
+  }
   &.active {
     background-color: var(--theme-color-hover);
   }

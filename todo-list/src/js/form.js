@@ -87,11 +87,11 @@ export default function formPageFactory(page) {
   }
 
   function displayToDo() {
-    page.classList.add("form-todo");
+    page.className = "form-todo";
     addToDoForm();
   }
   function displayProject() {
-    page.classList.add("form-project");
+    page.className = "form-project";
     addProjectForm();
   }
 

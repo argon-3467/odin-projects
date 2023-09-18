@@ -2,6 +2,7 @@ import "./css/reset.css";
 import "./css/variables.css";
 import "./css/header.css";
 import "./css/main.css";
+import "./css/page.css";
 import "./css/form.css";
 import "./css/footer.css";
 
@@ -11,6 +12,7 @@ import headerFactory from "./js/header";
 import mainPageFactory from "./js/main";
 import footerFactory from "./js/footer";
 import domManip from "./js/domManip";
+import todayFactory from "./js/today";
 
 const load = (() => {
   const header = document.querySelector(".header");
@@ -26,6 +28,9 @@ const load = (() => {
   headerSection.display();
   mainSection.createSideMenu();
   mainSection.createPage();
+  let page = document.getElementById("page");
+  let Today = todayFactory(page);
+  Today.display();
   themeUpdater.addThemesCard();
   footerSection.display();
   themeUpdater.updateTheme("system");

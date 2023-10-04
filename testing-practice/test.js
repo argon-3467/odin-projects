@@ -2,6 +2,7 @@ const capitalize = require('./functions/capitalize.js');
 const reverse = require('./functions/reverse.js');
 const calculator = require('./functions/calculator.js');
 const caesar = require('./functions/caesar.js');
+const analyzeArray = require('./functions/analyzeArray.js');
 
 describe('capitalize function', () => {
   test('Works with normal string', () => {
@@ -65,5 +66,21 @@ describe('caesar cipher function', () => {
     expect(caesar('King: Hey, you defend the east wall !!!', 300)).toBe(
       'Ywbu: Vsm, mci rstsbr hvs sogh kozz !!!'
     );
+  });
+});
+
+describe('analyzeArray function', () => {
+  test('Normal array', () => {
+    expect(analyzeArray([1, 8, 3, 4, 2, 6])).toEqual({
+      average: 4,
+      min: 1,
+      max: 8,
+      length: 6,
+    });
+  });
+  test('Error on empty array', () => {
+    expect(() => {
+      analyzeArray([]);
+    }).toThrow('empty');
   });
 });

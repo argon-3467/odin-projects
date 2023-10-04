@@ -1,6 +1,7 @@
 const capitalize = require('./functions/capitalize.js');
 const reverse = require('./functions/reverse.js');
 const calculator = require('./functions/calculator.js');
+const caesar = require('./functions/caesar.js');
 
 describe('capitalize function', () => {
   test('Works with normal string', () => {
@@ -47,5 +48,22 @@ describe('calculator object', () => {
   });
   test('multiply', () => {
     expect(calculator.multiply(0.1, 0.2)).toBeCloseTo(0.02);
+  });
+});
+
+describe('caesar cipher function', () => {
+  test('Normal ciphering', () => {
+    expect(caesar('ram', 3)).toBe('udp');
+  });
+  test('wrapping after z', () => {
+    expect(caesar('yza', 10)).toBe('ijk');
+  });
+  test('keeping the same Case', () => {
+    expect(caesar('AbCdEf', 300)).toBe('OpQrSt');
+  });
+  test('Puncutations remain same', () => {
+    expect(caesar('King: Hey, you defend the east wall !!!', 300)).toBe(
+      'Ywbu: Vsm, mci rstsbr hvs sogh kozz !!!'
+    );
   });
 });

@@ -17,3 +17,5 @@ This repository contains my projects while I learn web development
 8. [Library](https://argon-3467.github.io/odin-projects/library)
 9. [Tic-Tac-Toe](https://argon-3467.github.io/odin-projects/tic-tac-toe)
 10. [Restaurant-page](https://argon-3467.github.io/odin-projects/restaurant-page/dist/)
+11. [todo-list](https://argon-3467.github.io/odin-projects/todo-list/dist/)
+12. [weather-app](https://argon-3467.github.io/odin-projects/weather-app/dist/)
